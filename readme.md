@@ -1,44 +1,12 @@
-# Helper functions for the server side of FounderLab apps
+# Small util functions for Frameworkstein
 
-#####backbone-rest render example:
-```javascript
-...
-import {render} from 'fl-server-utils'
+fetchComponentData
+------------------
 
-const detail = (applications, options, callback) => {
-  // applications are a list of plain objects (not backbone models)
-  callback(null, _.pick(applications, 'id'))
-}
-detail.$raw = true // flag it as raw
+Call Component.fetchData on a list of React Components.
 
-export default class ApplicationsController extends RestController {
-  constructor(options) {
-    super(options.app, _.defaults({
-      model_type: Application,
-      route: '/api/applications',
-      auth: [...options.auth, createAuthMiddleware({canAccess})],
-      templates: {
-        detail: detail,
-      },
-      default_template: 'detail',
-    }, options))
-    // Overwrite the render method, making sure to bind it to the controller
-    this.render = render.bind(this)
-  }
-}
-```
+Used to tie in the data loading story for Frameworkstein.
 
-#####createServerRenderer:
-Helper method that takes care of a bunch of bs boilerplate for rendering react components server side. 
-Usage: 
+This fetchData method of each container is called whenever it's mounted.
 
-```javascript
-app.get('*', createServerRenderer({
-  createStore, 
-  getRoutes,
-  scripts: _.map(_.pick(require('../../webpack-assets.json'), ['shared.js', 'app']), entry => entry.js),
-  omit: 'admin',
-  alwaysFetch: require('../../shared/modules/app/containers/App'),
-  config: _.pick(config, config.clientConfigKeys),
-}))
-```
+Used in `fl-server-utils` and `fl-react-utils`
