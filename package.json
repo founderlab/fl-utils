@@ -1,6 +1,6 @@
 {
   "name": "fl-utils",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Small util functions for Frameworkstein",
   "main": "lib/index.js",
   "author": {
