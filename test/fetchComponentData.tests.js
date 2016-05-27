@@ -2,9 +2,9 @@ import expect from 'expect'
 import {spy} from 'sinon'
 import {fetchComponentData} from '../src'
 
-describe('fl-utils', () => {
+describe('fetchComponentData', () => {
 
-  it('fetchComponentData calls fetchData on each component', done => {
+  it('Calls fetchData on each component', done => {
 
     const options = {store: 'store', action: 'action'}
 
@@ -31,7 +31,7 @@ describe('fl-utils', () => {
     })
   })
 
-  it('fetchComponentData gracefully bails if components lack fetchData', done => {
+  it('Gracefully bails if components lack fetchData', done => {
 
     const options = {components: [null, {}]}
 
